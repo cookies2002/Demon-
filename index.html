@@ -3,149 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nezuko Music Bot - Premium Telegram Streaming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>Nezuko Music Bot - Premium Telegram Music Bot</title>
   <style>
-    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      color: #fff;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
     }
 
-    /* Video background */
-    .background-video {
+    /* YouTube background container */
+    .video-background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      z-index: -2;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
     }
 
-    /* Overlay */
+    .video-background iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Dark overlay for readability */
     .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      z-index: -1;
+      z-index: 0;
     }
 
-    /* Main container */
-    .container {
+    header, .content, footer {
       position: relative;
       z-index: 1;
-      max-width: 700px;
-      padding: 30px;
-      background: rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #ff4fa1; /* Nezuko pink */
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 8px;
+      color: #f8c7e4;
+    }
+
+    .content {
+      background: rgba(0,0,0,0.55);
+      padding: 30px 25px;
       border-radius: 15px;
       backdrop-filter: blur(8px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.7);
-      animation: fadeIn 1.5s ease forwards;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.8);
+      max-width: 800px;
+      margin-top: 25px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      font-size: 2.8rem;
+    .content h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
       color: #ff4fa1;
-      margin-bottom: 15px;
     }
 
-    p.subtitle {
-      font-size: 1.2rem;
-      color: #f8c7e4;
-      margin-bottom: 25px;
-    }
-
-    p.description {
-      font-size: 1rem;
-      color: #ddd;
+    .content p {
+      font-size: 1.1rem;
+      color: #eee;
       line-height: 1.6;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 12px 30px;
+      margin-top: 25px;
+      padding: 15px 40px;
       background: #ff4fa1;
       color: #fff;
-      font-weight: 600;
-      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 10px;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 79, 161, 0.6);
     }
 
     .btn:hover {
-      background: #ff66b2;
       transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(255, 79, 161, 0.9);
     }
 
     footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
+      margin-top: 40px;
       color: #ccc;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
+      header h1 {
+        font-size: 2.2rem;
       }
-      p.subtitle {
-        font-size: 1rem;
-      }
-      p.description {
-        font-size: 0.95rem;
+      .content h2 {
+        font-size: 1.5rem;
       }
       .btn {
-        padding: 10px 20px;
+        padding: 12px 30px;
         font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Video Background -->
-  <video class="background-video" autoplay muted loop playsinline>
-    <source src="https://envs.sh/Z5B.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <!-- YouTube background -->
+  <div class="video-background">
+    <iframe 
+      src="https://www.youtube.com/embed/VE9JSnJbtto?autoplay=1&mute=1&loop=1&playlist=VE9JSnJbtto&controls=0&showinfo=0&modestbranding=1" 
+      frameborder="0" 
+      allow="autoplay; fullscreen" 
+      allowfullscreen>
+    </iframe>
+  </div>
 
   <!-- Overlay -->
   <div class="overlay"></div>
 
-  <!-- Content -->
-  <div class="container">
+  <!-- Page Content -->
+  <header>
     <h1>Nezuko Music Bot</h1>
-    <p class="subtitle">Your Premium Telegram Streaming Experience</p>
-    <p class="description">
-      Stream music effortlessly in group calls with support for <strong>YouTube</strong>, <strong>Spotify</strong>, <strong>Apple Music</strong>, <strong>Soundcloud</strong>, <strong>JioSaavn</strong> and more. Built with Python and <strong>Py-Tgcalls</strong>, designed for smooth playback and powerful features.<br><br>
-      Join our community and enhance your listening experience today!
+    <p>Your Premium Telegram Streaming Experience</p>
+  </header>
+
+  <div class="content">
+    <h2>Infinity Castle Music Experience</h2>
+    <p>
+      Stream music effortlessly in group calls with support for <strong>YouTube</strong>, 
+      <strong>Spotify</strong>, <strong>Apple Music</strong>, <strong>Soundcloud</strong>, 
+      <strong>JioSaavn</strong> and more.  
+      <br/><br/>
+      Built with Python and <strong>Py-Tgcalls</strong>, designed for smooth playback 
+      and powerful features inspired by the Demon Slayer universe.
     </p>
     <a href="https://t.me/Nezuko_chan_0" target="_blank" class="btn">Join Support Channel</a>
-    <footer>© 2025 Nezuko Music Bot • Crafted with ❤️ for music lovers</footer>
   </div>
 
+  <footer>
+    <p>© 2025 Nezuko Music Bot • Crafted with ❤️ for music lovers</p>
+  </footer>
 </body>
 </html>
